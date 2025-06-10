@@ -1,20 +1,20 @@
-AWSTemplateFormatVersion: '2010-09-09'
-Description: 'CloudFormation template to create a Jupyter notebook in SageMaker with an execution role and Anthropic Prompt Eng. Repo'
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "CloudFormation template to create a Jupyter notebook in SageMaker with an execution role and Anthropic Prompt Eng. Repo"
 
 Parameters:
   NotebookName:
     Type: String
-    Default: 'PromptEngWithAnthropicNotebook'
+    Default: "PromptEngWithAnthropicNotebook"
   DefaultRepoUrl:
     Type: String
-    Default: 'https://github.com/aws-samples/prompt-engineering-with-anthropic-claude-v-3.git'
+    Default: "https://github.com/schuettflix/prompt-eng-interactive-tutorial.git"
 
 Resources:
   SageMakerExecutionRole:
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
-        Version: '2012-10-17'
+        Version: "2012-10-17"
         Statement:
           - Effect: Allow
             Principal:
@@ -29,21 +29,21 @@ Resources:
   KmsKey:
     Type: AWS::KMS::Key
     Properties:
-      Description: 'KMS key for SageMaker notebook'
+      Description: "KMS key for SageMaker notebook"
       KeyPolicy:
-        Version: '2012-10-17'
+        Version: "2012-10-17"
         Statement:
           - Effect: Allow
             Principal:
-              AWS: !Sub 'arn:aws:iam::${AWS::AccountId}:root'
-            Action: 'kms:*'
-            Resource: '*'
+              AWS: !Sub "arn:aws:iam::${AWS::AccountId}:root"
+            Action: "kms:*"
+            Resource: "*"
       EnableKeyRotation: true
 
   KmsKeyAlias:
     Type: AWS::KMS::Alias
     Properties:
-      AliasName: !Sub 'alias/${NotebookName}-kms-key'
+      AliasName: !Sub "alias/${NotebookName}-kms-key"
       TargetKeyId: !Ref KmsKey
 
   SageMakerNotebookInstance:
