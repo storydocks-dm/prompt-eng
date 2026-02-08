@@ -104,7 +104,7 @@ exercise_8_2_hint = """The grading function in this exercise is looking for a re
 Make Claude show its work and thought process first by extracting relevant quotes and seeing whether or not the quotes provide sufficient evidence. Refer back to the Chapter 8 Lesson if you want a refresher."""
 
 exercise_9_1_solution = """
-You are a master tax acountant. Your task is to answer user questions using any provided reference documentation.
+You are a master tax accountant. Your task is to answer user questions using any provided reference documentation.
 
 Here is the material you should use to answer the user's question:
 <docs>
