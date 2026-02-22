@@ -20,6 +20,8 @@ Note: This tutorial uses our smallest, fastest, and cheapest model, Claude 3 Hai
 
 *This tutorial also exists on [Google Sheets using Anthropic's Claude for Sheets extension](https://docs.google.com/spreadsheets/d/19jzLgRruG9kjUQNKtCg1ZjdD6l6weA6qRXG5zLIAhC8/edit?usp=sharing). We recommend using that version as it is more user friendly.*
 
+**Try the interactive version**: An [Interactive Tutorial Artifact](https://claude.ai/public/artifacts/52397f8f-b51c-4c3d-baf5-7c9c6b214f43) is also available. It covers all 9 chapters with built-in exercises and requires only an Anthropic subscription (no API key needed).
+
 When you are ready to begin, go to `01_Basic Prompt Structure` to proceed.
 
 ## Table of Contents
