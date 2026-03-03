@@ -1,5 +1,11 @@
 # Welcome to Anthropic's Prompt Engineering Interactive Tutorial
 
+## 🎯 Interactive Version Available!
+
+Try the interactive tutorial directly in Claude: **[Interactive Tutorial Artifact](https://claude.ai/public/artifacts/52397f8f-b51c-4c3d-baf5-7c9c6b214f43)** 
+
+This artifact version covers all 9 chapters with built-in exercises and only requires an Anthropic subscription — no API key needed. It complements the existing Jupyter notebook and Google Sheets versions.
+
 ## Course introduction and goals
 
 This course is intended to provide you with a comprehensive step-by-step understanding of how to engineer optimal prompts within Claude.
