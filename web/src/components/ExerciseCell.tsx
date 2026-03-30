@@ -1,12 +1,12 @@
 'use client';
 import { useState } from 'react';
-import type { Exercise } from '@/lib/types';
-import type { CompleteRequest, CompleteResponse } from '@/lib/types';
+import type { SerializableExercise, CompleteRequest, CompleteResponse } from '@/lib/types';
+import { gradeExercise } from '@/lib/actions';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 interface Props {
-  exercise: Exercise;
+  exercise: SerializableExercise;
 }
 
 export default function ExerciseCell({ exercise }: Props) {
@@ -34,7 +34,7 @@ export default function ExerciseCell({ exercise }: Props) {
         setError(data.error);
       } else {
         setResponse(data.text);
-        setGraded(exercise.grade(data.text));
+        setGraded(await gradeExercise(exercise.id, data.text));
       }
     } catch {
       setError('Netzwerkfehler. Bitte erneut versuchen.');

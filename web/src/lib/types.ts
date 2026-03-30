@@ -17,6 +17,9 @@ export interface Exercise {
   grade: (response: string) => boolean;
 }
 
+/** Serializable subset of Exercise — safe to pass from Server to Client Components */
+export type SerializableExercise = Omit<Exercise, 'grade'>;
+
 export interface Chapter {
   slug: string;
   /** Display number: "00", "01", "02", ... */
