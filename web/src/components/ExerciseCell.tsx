@@ -86,7 +86,7 @@ export default function ExerciseCell({ exercise }: Props) {
           disabled={loading}
           className="bg-orange-500 hover:bg-orange-600 disabled:opacity-50 text-white font-semibold px-5 py-2 rounded-lg text-sm transition-colors"
         >
-          {loading ? 'Ladt...' : '▶ Ausfuhren'}
+          {loading ? 'Lädt...' : '▶ Ausführen'}
         </button>
         <button
           onClick={() => setShowHint(!showHint)}

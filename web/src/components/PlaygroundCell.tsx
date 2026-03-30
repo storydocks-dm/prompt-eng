@@ -63,7 +63,7 @@ export default function PlaygroundCell() {
         disabled={loading || !prompt.trim()}
         className="bg-stone-700 hover:bg-stone-800 disabled:opacity-50 text-white font-semibold px-5 py-2 rounded-lg text-sm transition-colors"
       >
-        {loading ? 'Ladt...' : '▶ Ausfuhren'}
+        {loading ? 'Lädt...' : '▶ Ausführen'}
       </button>
       {error && (
         <div className="bg-red-50 border border-red-200 rounded-lg p-3 mt-3 text-sm text-red-700">
