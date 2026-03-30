@@ -1,6 +1,6 @@
 'use server';
 
-import { getChapter, CHAPTERS } from '@/data/chapters';
+import { CHAPTERS } from '@/data/chapters';
 
 /** Look up the grade function by exerciseId (chapterId embedded in the ID format "ex-N-M") */
 export async function gradeExercise(exerciseId: string, response: string): Promise<boolean> {
