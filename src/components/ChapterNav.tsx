@@ -1,6 +1,8 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { getSolvedExercises } from '@/lib/progress';
 import { CHAPTERS } from '@/data/chapters';
 
 const LEVEL_LABELS: Record<string, string> = {
@@ -13,6 +15,19 @@ const LEVEL_LABELS: Record<string, string> = {
 
 export default function ChapterNav() {
   const pathname = usePathname();
+  const [solved, setSolved] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    setSolved(getSolvedExercises());
+    const refresh = () => setSolved(getSolvedExercises());
+    window.addEventListener('progress-updated', refresh);
+    window.addEventListener('storage', refresh);
+    return () => {
+      window.removeEventListener('progress-updated', refresh);
+      window.removeEventListener('storage', refresh);
+    };
+  }, []);
+
   const groups = CHAPTERS.reduce<Record<string, typeof CHAPTERS>>((acc, ch) => {
     acc[ch.level] = [...(acc[ch.level] ?? []), ch];
     return acc;
@@ -49,7 +64,18 @@ export default function ChapterNav() {
                   <span className="text-xs text-stone-400 font-mono w-6 shrink-0">
                     {ch.number}
                   </span>
-                  <span className="truncate">{ch.title}</span>
+                  <span className="truncate flex-1">{ch.title}</span>
+                  {ch.exercises.length > 0 && (
+                    <span
+                      className={`text-xs font-mono shrink-0 ${
+                        ch.exercises.every((ex) => solved.has(ex.id))
+                          ? 'text-green-600'
+                          : 'text-stone-400'
+                      }`}
+                    >
+                      {ch.exercises.filter((ex) => solved.has(ex.id)).length}/{ch.exercises.length}
+                    </span>
+                  )}
                 </Link>
               );
             })}
