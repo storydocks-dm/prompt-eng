@@ -70,6 +70,7 @@ Claude extrapoliert das Muster aus den Beispielen und formatiert den dritten Abs
       defaultSystemPrompt: '',
       editableFields: ['prompt', 'systemPrompt'],
       hint: 'Schreibe Beispiel-E-Mails und klassifiziere sie für Claude (mit genau dem Format, das du möchtest). Tipps:\n1. Mindestens zwei Beispiel-E-Mails.\n2. Das Beispiel-Antwortformat muss genau dem gewünschten Format entsprechen — Claudes Antwort endet mit dem Kategoriebuchstaben.\n3. Stelle sicher, dass die Kategorien und {email} noch im Prompt vorhanden sind.',
+      variables: { email: 'Hi -- My Mixmaster4000 is producing a strange noise when I operate it. It also smells a bit smoky and plasticky, like burning electronics. I need a replacement.' },
       grade: (text: string): boolean => {
         return /B\) B/i.test(text);
       },

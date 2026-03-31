@@ -84,6 +84,7 @@ Below is a list of sentences. Tell me the second item on the list.
       defaultSystemPrompt: '',
       editableFields: ['prompt'],
       hint: 'Die Bewertung sucht nach "haiku" und "pig" in der Antwort. Vergiss nicht, genau `{TOPIC}` als Platzhalter einzubauen. Wenn du den Wert von "TOPIC" änderst, sollte Claude ein Haiku über ein anderes Thema schreiben.',
+      variables: { TOPIC: 'Pigs' },
       grade: (text: string): boolean => {
         return /pigs/i.test(text) && /haiku/i.test(text);
       },
@@ -97,6 +98,7 @@ Below is a list of sentences. Tell me the second item on the list.
       defaultSystemPrompt: '',
       editableFields: ['prompt'],
       hint: 'Die Bewertung sucht nach "brown" in der Antwort. Was passiert, wenn du "{QUESTION}" in XML-Tags einwickelst?',
+      variables: { QUESTION: 'What color is a chocolate Labrador?' },
       grade: (text: string): boolean => {
         return /brown/i.test(text);
       },
@@ -110,6 +112,7 @@ Below is a list of sentences. Tell me the second item on the list.
       defaultSystemPrompt: '',
       editableFields: ['prompt'],
       hint: 'Die Bewertung sucht nach "brown" in der Antwort. Entferne ein Wort oder eine Zeichengruppe nach der anderen, beginnend mit den Teilen, die am wenigsten Sinn ergeben.',
+      variables: { QUESTION: 'What color is a chocolate Labrador?' },
       grade: (text: string): boolean => {
         return /brown/i.test(text);
       },

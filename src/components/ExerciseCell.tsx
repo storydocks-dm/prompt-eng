@@ -10,6 +10,14 @@ interface Props {
   exercise: SerializableExercise;
 }
 
+function substituteVars(text: string, variables?: Record<string, string>): string {
+  if (!variables) return text;
+  return Object.entries(variables).reduce(
+    (acc, [key, value]) => acc.replaceAll(`{${key}}`, value),
+    text
+  );
+}
+
 export default function ExerciseCell({ exercise }: Props) {
   const [prompt, setPrompt] = useState(exercise.defaultPrompt);
   const [systemPrompt, setSystemPrompt] = useState(exercise.defaultSystemPrompt);
@@ -24,7 +32,11 @@ export default function ExerciseCell({ exercise }: Props) {
     setError('');
     setGraded(null);
     try {
-      const body: CompleteRequest = { prompt, systemPrompt };
+      const vars = exercise.variables;
+      const body: CompleteRequest = {
+        prompt: substituteVars(prompt, vars),
+        systemPrompt: substituteVars(systemPrompt, vars),
+      };
       const res = await fetch('/api/complete', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -56,6 +68,23 @@ export default function ExerciseCell({ exercise }: Props) {
       <div className="prose prose-sm prose-stone max-w-none mb-4">
         <ReactMarkdown remarkPlugins={[remarkGfm]}>{exercise.description}</ReactMarkdown>
       </div>
+
+      {exercise.variables && Object.keys(exercise.variables).length > 0 && (
+        <div className="mb-3">
+          <label className="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1">
+            Variablen
+          </label>
+          <div className="bg-stone-50 border border-stone-200 rounded-lg p-3 font-mono text-sm space-y-1">
+            {Object.entries(exercise.variables).map(([key, value]) => (
+              <div key={key} className="flex gap-2">
+                <span className="text-orange-600 shrink-0">{`{${key}}`}</span>
+                <span className="text-stone-500">=</span>
+                <span className="text-stone-700 break-all">{value}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {exercise.editableFields.includes('systemPrompt') && (
         <div className="mb-3">

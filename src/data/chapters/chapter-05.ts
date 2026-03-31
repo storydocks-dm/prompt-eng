@@ -97,6 +97,7 @@ Beim Aufruf über die API kann der schließende XML-Tag im \`stop_sequences\`-Pa
       defaultSystemPrompt: '',
       editableFields: ['prompt'],
       hint: 'Die Bewertung sucht nach "tail", "cat" und "<haiku>" in der Antwort. Schritte:\n1. Ändere den Prompt, sodass Claude zwei Gedichte schreibt.\n2. Ersetze die konkreten Themen durch `{ANIMAL1}` und `{ANIMAL2}`.\n3. Stelle sicher, dass die Variablen korrekt substituiert werden.',
+      variables: { ANIMAL1: 'Cat', ANIMAL2: 'Dog' },
       grade: (text: string): boolean => {
         return (
           /tail/i.test(text) &&

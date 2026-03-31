@@ -13,6 +13,8 @@ export interface Exercise {
   editableFields: Array<'prompt' | 'systemPrompt'>;
   /** Plain-text hint shown on demand */
   hint: string;
+  /** Variable values substituted into {VAR_NAME} placeholders before sending to API */
+  variables?: Record<string, string>;
   /** Returns true when the response counts as correct */
   grade: (response: string) => boolean;
 }

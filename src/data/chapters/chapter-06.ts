@@ -60,6 +60,7 @@ Prompt: "Name a famous movie starring an actor who was born in the year 1956. Fi
       defaultSystemPrompt: '',
       editableFields: ['prompt', 'systemPrompt'],
       hint: 'Die Bewertung sucht nach "B) B" in der Antwort. Schritte:\n1. Füge alle vier Kategorien mit Klammern in den Prompt ein.\n2. Reduziere überflüssigen Text, sodass Claude direkt die Klassifizierung ausgibt.\n3. Falls Claude noch falsch klassifiziert, sage ihm, den vollständigen Kategorienamen auszugeben.\n4. Stelle sicher, dass {email} noch im Prompt-Template vorhanden ist.',
+      variables: { email: 'Hi -- My Mixmaster4000 is producing a strange noise when I operate it. It also smells a bit smoky and plasticky, like burning electronics. I need a replacement.' },
       grade: (text: string): boolean => {
         return /B\) B/i.test(text);
       },
@@ -73,6 +74,7 @@ Prompt: "Name a famous movie starring an actor who was born in the year 1956. Fi
       defaultSystemPrompt: '',
       editableFields: ['prompt', 'systemPrompt'],
       hint: 'Die Bewertung sucht nach dem korrekten Buchstaben in <answer>-Tags, z.B. "<answer>B</answer>". Gib Claude ein Beispiel, wie der Output aussehen soll — am besten in <example>-Tags. Vergiss nicht: wenn du Claudes Antwort vorausfüllst, ist dieser Teil nicht Teil der ausgegebenen Antwort.',
+      variables: { email: 'Hi -- My Mixmaster4000 is producing a strange noise when I operate it. It also smells a bit smoky and plasticky, like burning electronics. I need a replacement.' },
       grade: (text: string): boolean => {
         return /<answer>[A-D]<\/answer>/i.test(text);
       },
