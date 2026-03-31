@@ -1,5 +1,7 @@
 'use client';
 import { useState } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import type { CompleteRequest, CompleteResponse } from '@/lib/types';
 
 export default function PlaygroundCell() {
@@ -71,8 +73,8 @@ export default function PlaygroundCell() {
         </div>
       )}
       {response && (
-        <div className="mt-3 bg-white border border-stone-200 rounded-lg p-3 font-mono text-sm whitespace-pre-wrap max-h-64 overflow-y-auto">
-          {response}
+        <div className="mt-3 bg-white border border-stone-200 rounded-lg p-3 max-h-64 overflow-y-auto prose prose-sm prose-stone max-w-none prose-pre:bg-stone-900 prose-code:text-xs">
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>{response}</ReactMarkdown>
         </div>
       )}
     </div>
