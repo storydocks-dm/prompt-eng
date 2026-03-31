@@ -19,20 +19,15 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Verhindert, dass Code-Blöcke das Layout brechen */
-pre {
-  max-width: 100%;
-  overflow-x: auto;
-  white-space: pre;
-}
-
-/* Verhindert, dass langer Text aus dem Container läuft */
-p, li, td, th, h1, h2, h3, h4 {
+/* Automatischer Zeilenumbruch für alle Elemente */
+* {
   overflow-wrap: break-word;
   word-break: break-word;
 }
 
-/* Inline-Code umbrechbar machen */
-:not(pre) > code {
+/* Code-Blöcke umbrechen statt scrollen */
+pre, pre code {
+  white-space: pre-wrap;
   word-break: break-all;
+  max-width: 100%;
 }
