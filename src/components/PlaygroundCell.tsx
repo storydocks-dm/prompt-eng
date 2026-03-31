@@ -32,7 +32,7 @@ export default function PlaygroundCell() {
 
   return (
     <div className="border-2 border-dashed border-stone-200 rounded-xl p-5 bg-stone-50">
-      <h3 className="font-semibold text-stone-700 mb-3">Example Playground</h3>
+      <h3 className="font-semibold text-stone-700 mb-3">Freies Experimentieren</h3>
       <p className="text-sm text-stone-500 mb-4">
         Experimentiere frei mit eigenen Prompts — keine Bewertung.
       </p>

@@ -3,10 +3,10 @@ import type { Chapter } from '@/lib/types';
 const chapter: Chapter = {
   slug: 'basic-prompt-structure',
   number: '01',
-  title: 'Basic Prompt Structure',
+  title: 'Grundlegende Prompt-Struktur',
   level: 'beginner',
   lessonMarkdown: `
-## Lesson
+## Lektion
 
 Anthropic bietet zwei APIs an: die ältere Text Completions API und die aktuelle **Messages API**. Wir verwenden ausschließlich die Messages API.
 
@@ -37,7 +37,7 @@ Prompt: "What year was Celine Dion born in?"
 
 \`user\` und \`assistant\` Nachrichten **müssen abwechseln**, und die Liste **muss mit \`user\` beginnen**. Fehler dabei führen zu API-Fehlern.
 
-### System Prompts
+### System-Prompts
 
 Ein System-Prompt gibt Claude Kontext, Anweisungen und Richtlinien **bevor** die eigentliche Frage gestellt wird. Er existiert getrennt von den \`user\`/\`assistant\`-Nachrichten.
 
@@ -55,7 +55,7 @@ Ein guter System-Prompt verbessert Claudes Performance erheblich — z.B. bei de
   exercises: [
     {
       id: 'ex-1-1',
-      title: 'Exercise 1.1 — Counting to Three',
+      title: 'Übung 1.1 — Bis drei zählen',
       description:
         'Schreibe einen Prompt, der Claude dazu bringt, **bis drei zu zählen**. Die Bewertung prüft, ob die Antwort die Ziffern 1, 2 und 3 enthält.',
       defaultPrompt: '[Ersetze diesen Text]',
@@ -68,13 +68,13 @@ Ein guter System-Prompt verbessert Claudes Performance erheblich — z.B. bei de
     },
     {
       id: 'ex-1-2',
-      title: 'Exercise 1.2 — System Prompt',
+      title: 'Übung 1.2 — System-Prompt',
       description:
         'Ändere den **System-Prompt** so, dass Claude antwortet wie ein **3-jähriges Kind**.',
       defaultPrompt: 'How big is the sky?',
       defaultSystemPrompt: '[Ersetze diesen Text]',
       editableFields: ['systemPrompt'],
-      hint: 'Die Bewertung sucht nach "giggles" oder "soo" in der Antwort. Weise Claude in einem System-Prompt an, wie ein kleines Kind zu sprechen.',
+      hint: 'Die Bewertung sucht nach "giggles" oder "soo" in der Antwort. Weise Claude in einem System-Prompt an, wie ein kleines Kind zu sprechen — auf Englisch, damit die Bewertung funktioniert.',
       grade: (text: string): boolean => {
         return /giggles/i.test(text) || /soo/i.test(text);
       },

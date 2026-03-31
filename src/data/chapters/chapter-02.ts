@@ -3,41 +3,41 @@ import type { Chapter } from '@/lib/types';
 const chapter: Chapter = {
   slug: 'being-clear-and-direct',
   number: '02',
-  title: 'Being Clear and Direct',
+  title: 'Klar und direkt formulieren',
   level: 'beginner',
   lessonMarkdown: `
-## Lesson
+## Lektion
 
-**Claude responds best to clear and direct instructions.**
+**Claude reagiert am besten auf klare und direkte Anweisungen.**
 
-Think of Claude like any other human that is new to the job. **Claude has no context** on what to do aside from what you literally tell it. Just as when you instruct a human for the first time on a task, the more you explain exactly what you want in a straightforward manner to Claude, the better and more accurate Claude's response will be.
+Stell dir Claude wie einen neuen Mitarbeiter vor, der noch keinen Kontext hat. **Claude weiß ohne explizite Anleitung nicht, was zu tun ist.** Genau wie bei der ersten Einweisung eines Kollegen gilt: Je klarer und direkter du erklärt, was du willst, desto besser und genauer ist Claudes Antwort.
 
-When in doubt, follow the **Golden Rule of Clear Prompting**:
-- Show your prompt to a colleague or friend and have them follow the instructions themselves to see if they can produce the result you want. If they're confused, Claude's confused.
+Im Zweifelsfall gilt die **Goldene Regel klarer Prompts**:
+- Zeig deinen Prompt einem Kollegen oder Freund und lass ihn die Anweisung selbst ausführen. Wenn er verwirrt ist, ist Claude es auch.
 
-### Examples
+### Beispiele
 
-Let's take a task like writing poetry. (Ignore any syllable mismatch - LLMs aren't great at counting syllables yet.)
+Nehmen wir das Schreiben von Gedichten als Aufgabe.
 
 \`\`\`
 Prompt: "Write a haiku about robots."
 \`\`\`
 
-This haiku is nice enough, but users may want Claude to go directly into the poem without the "Here is a haiku" preamble.
+Das Haiku ist ganz nett, aber vielleicht möchtest du, dass Claude direkt ins Gedicht einsteigt, ohne eine Einleitung wie "Here is a haiku".
 
-How do we achieve that? We **ask for it**!
+Wie erreichen wir das? Wir **fragen direkt danach**!
 
 \`\`\`
 Prompt: "Write a haiku about robots. Skip the preamble; go straight into the poem."
 \`\`\`
 
-Here's another example. Let's ask Claude who's the best basketball player of all time. While Claude lists a few names, **it doesn't respond with a definitive "best"**.
+Ein weiteres Beispiel: Fragen wir Claude nach dem besten Basketballspieler aller Zeiten. Claude nennt mehrere Namen, **ohne sich auf einen einzigen "Besten" festzulegen**.
 
 \`\`\`
 Prompt: "Who is the best basketball player of all time?"
 \`\`\`
 
-Can we get Claude to make up its mind and decide on a best player? Yes! Just ask!
+Können wir Claude dazu bringen, sich zu entscheiden? Ja! Einfach direkt fragen!
 
 \`\`\`
 Prompt: "Who is the best basketball player of all time? Yes, there are differing opinions, but if you absolutely had to pick one player, who would it be?"
@@ -46,39 +46,39 @@ Prompt: "Who is the best basketball player of all time? Yes, there are differing
   exercises: [
     {
       id: 'ex-2-1',
-      title: 'Exercise 2.1 — Spanish',
+      title: 'Übung 2.1 — Spanisch',
       description:
-        'Modify the **System Prompt** to make Claude output its answer in Spanish.',
+        'Ändere den **System-Prompt** so, dass Claude seine Antwort auf **Spanisch** ausgibt.',
       defaultPrompt: 'Hello Claude, how are you?',
-      defaultSystemPrompt: '[Replace this text]',
+      defaultSystemPrompt: '[Ersetze diesen Text]',
       editableFields: ['systemPrompt'],
-      hint: 'The grading function in this exercise is looking for any answer that includes the word "hola". Ask Claude to reply in Spanish like you would when speaking with a human. It\'s that simple!',
+      hint: 'Die Bewertung sucht nach einer Antwort, die das Wort "hola" enthält. Weise Claude an, auf Spanisch zu antworten — genau so, wie du es einem Menschen sagen würdest.',
       grade: (text: string): boolean => {
         return /hola/i.test(text);
       },
     },
     {
       id: 'ex-2-2',
-      title: 'Exercise 2.2 — One Player Only',
+      title: 'Übung 2.2 — Nur ein Spieler',
       description:
-        'Modify the **Prompt** so that Claude doesn\'t equivocate at all and responds with **ONLY** the name of one specific player, with **no other words or punctuation**.',
-      defaultPrompt: '[Replace this text]',
+        'Ändere den **Prompt** so, dass Claude **ausschließlich** den Namen eines einzigen Spielers ausgibt — ohne weitere Wörter oder Satzzeichen.',
+      defaultPrompt: '[Ersetze diesen Text]',
       defaultSystemPrompt: '',
       editableFields: ['prompt'],
-      hint: 'The grading function in this exercise is looking for EXACTLY "Michael Jordan". How would you ask another human to do this? Reply with no other words? Reply with only the name and nothing else? There are several ways to approach this answer.',
+      hint: 'Die Bewertung sucht nach exakt "Michael Jordan". Wie würdest du einem Menschen sagen, nur den Namen und sonst nichts zu antworten? Es gibt mehrere Wege.',
       grade: (text: string): boolean => {
         return text.trim() === 'Michael Jordan';
       },
     },
     {
       id: 'ex-2-3',
-      title: 'Exercise 2.3 — Write a Story',
+      title: 'Übung 2.3 — Eine Geschichte schreiben',
       description:
-        'Modify the **Prompt** so that Claude responds with as long a response as you can muster. If your answer is **over 800 words**, Claude\'s response will be graded as correct.',
-      defaultPrompt: '[Replace this text]',
+        'Ändere den **Prompt** so, dass Claude eine **möglichst lange Antwort** produziert. Wenn deine Antwort **über 800 Wörter** hat, gilt die Übung als bestanden.',
+      defaultPrompt: '[Ersetze diesen Text]',
       defaultSystemPrompt: '',
       editableFields: ['prompt'],
-      hint: 'The grading function in this cell is looking for a response that is equal to or greater than 800 words. Because LLMs aren\'t great at counting words yet, you may have to overshoot your target.',
+      hint: 'Die Bewertung zählt Wörter und erwartet mindestens 800. Da LLMs beim Wörterzählen ungenau sind, solltest du etwas mehr anfordern als nötig.',
       grade: (text: string): boolean => {
         const trimmed = text.trim();
         const words = trimmed.split(/\s+/).length;

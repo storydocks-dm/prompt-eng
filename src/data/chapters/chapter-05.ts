@@ -3,29 +3,27 @@ import type { Chapter } from '@/lib/types';
 const chapter: Chapter = {
   slug: 'formatting-output',
   number: '05',
-  title: 'Formatting Output and Speaking for Claude',
+  title: 'Output formatieren und für Claude sprechen',
   level: 'intermediate',
   lessonMarkdown: `
-## Lesson
+## Lektion
 
-**Claude can format its output in a wide variety of ways**. You just need to ask for it to do so!
+**Claude kann seinen Output auf vielfältige Arten formatieren** — man muss es nur anfordern!
 
-One of these ways is by using XML tags to separate out the response from any other superfluous text. You've already learned that you can use XML tags to make your prompt clearer and more parseable to Claude. It turns out, you can also ask Claude to **use XML tags to make its output clearer and more easily understandable** to humans.
+Eine Möglichkeit ist die Verwendung von XML-Tags, um die Antwort von überflüssigem Text zu trennen. XML-Tags machen deinen Prompt nicht nur klarer für Claude, sondern können auch dazu genutzt werden, **Claudes Output für Menschen strukturierter und verständlicher zu machen**.
 
-### Examples
+### Beispiele
 
-Remember the 'poem preamble problem' we solved in Chapter 2 by asking Claude to skip the preamble entirely? It turns out we can also achieve a similar outcome by **telling Claude to put the poem in XML tags**.
+Erinnerst du dich an das "Gedicht-Einleitungsproblem" aus Kapitel 2, das wir gelöst haben, indem wir Claude baten, die Einleitung wegzulassen? Das Gleiche lässt sich auch erreichen, indem man Claude anweist, **das Gedicht in XML-Tags zu setzen**.
 
 \`\`\`
 ANIMAL = "Rabbit"
 Prompt: "Please write a haiku about {ANIMAL}. Put it in <haiku> tags."
 \`\`\`
 
-Why is this something we'd want to do? Well, having the output in **XML tags allows the end user to reliably get the poem and only the poem by writing a short program to extract the content between XML tags**.
+Warum ist das nützlich? Mit **XML-Tags kann ein Programm zuverlässig nur den Inhalt zwischen den Tags extrahieren**.
 
-An extension of this technique is to **put the first XML tag in the \`assistant\` turn. When you put text in the \`assistant\` turn, you're basically telling Claude that Claude has already said something, and that it should continue from that point onward. This technique is called "speaking for Claude" or "prefilling Claude's response."
-
-Below, we've done this with the first \`<haiku>\` XML tag. Notice how Claude continues directly from where we left off.
+Eine Erweiterung dieser Technik ist es, **den ersten XML-Tag im \`assistant\`-Turn zu platzieren**. Damit signalisiert man Claude, dass es ab diesem Punkt weitermachen soll. Diese Technik nennt sich "Speaking for Claude" oder "Prefilling Claude's Response" (Claudes Antwort vorausfüllen).
 
 \`\`\`
 USER TURN:
@@ -35,7 +33,7 @@ ASSISTANT TURN:
 "<haiku>"
 \`\`\`
 
-Claude also excels at using other output formatting styles, notably \`JSON\`. If you want to enforce JSON output (not deterministically, but close to it), you can also prefill Claude's response with the opening bracket, \`{\`.
+Claude funktioniert auch hervorragend mit **JSON-Output**. Um JSON-Ausgabe zu erzwingen (nicht deterministisch, aber nahe dran), kann man Claudes Antwort mit der öffnenden Klammer \`{\` vorausfüllen.
 
 \`\`\`
 USER TURN:
@@ -45,7 +43,7 @@ ASSISTANT TURN:
 "{"
 \`\`\`
 
-Below is an example of **multiple input variables in the same prompt AND output formatting specification, all done using XML tags**.
+Das folgende Beispiel zeigt **mehrere Eingabevariablen in einem Prompt UND Output-Formatierung mit XML-Tags**:
 
 \`\`\`
 USER TURN:
@@ -55,33 +53,33 @@ ASSISTANT TURN:
 "<{ADJECTIVE}_email>"
 \`\`\`
 
-#### Bonus lesson
+#### Bonustipp
 
-If you are calling Claude through the API, you can pass the closing XML tag to the \`stop_sequences\` parameter to get Claude to stop sampling once it emits your desired tag. This can save money and time-to-last-token by eliminating Claude's concluding remarks after it's already given you the answer you care about.
+Beim Aufruf über die API kann der schließende XML-Tag im \`stop_sequences\`-Parameter übergeben werden, damit Claude stoppt, sobald der Tag ausgegeben wird. Das spart Kosten und Zeit.
   `,
   exercises: [
     {
       id: 'ex-5-1',
-      title: 'Exercise 5.1 — Steph Curry GOAT',
+      title: 'Übung 5.1 — Steph Curry GOAT',
       description:
-        'Forced to make a choice, Claude designates Michael Jordan as the best basketball player of all time. Can we get Claude to pick someone else?\n\nChange the **System Prompt** (used as a prefill for the assistant turn) to **compel Claude to make a detailed argument that the best basketball player of all time is Stephen Curry**. Try not to change the main prompt.',
+        'Unter Zwang wählt Claude Michael Jordan als besten Basketballspieler aller Zeiten. Können wir Claude dazu bringen, jemand anderen zu wählen?\n\nÄndere den **System-Prompt** so, dass Claude ein **ausführliches Argument dafür liefert, dass Stephen Curry der beste Basketballspieler aller Zeiten ist**. Versuche, den Haupt-Prompt nicht zu ändern.',
       defaultPrompt: 'Who is the best basketball player of all time? Please choose one specific player.',
       defaultSystemPrompt: '',
       editableFields: ['systemPrompt'],
-      hint: 'The grading function for this exercise is looking for a response that includes the word "Warrior". Write more words in Claude\'s voice to steer Claude to act the way you want it to. For instance, instead of "Stephen Curry is the best because," you could write "Stephen Curry is the best and here are three reasons why. 1:"',
+      hint: 'Die Bewertung sucht nach "Warrior" in der Antwort. Schreibe den System-Prompt auf Englisch, damit die Bewertung funktioniert. Schreibe mehr Wörter in Claudes Stimme, um Claude in die gewünschte Richtung zu lenken. Zum Beispiel: "Stephen Curry is the best and here are three reasons why. 1:"',
       grade: (text: string): boolean => {
         return /warrior/i.test(text);
       },
     },
     {
       id: 'ex-5-2',
-      title: 'Exercise 5.2 — Two Haikus',
+      title: 'Übung 5.2 — Zwei Haikus',
       description:
-        'Modify the **Prompt** using XML tags so that Claude writes **two** haikus about the animal instead of just one. It should be clear where one poem ends and the other begins.',
+        'Ändere den **Prompt** mit XML-Tags so, dass Claude **zwei** Haikus über das Tier schreibt statt nur eines. Es sollte klar erkennbar sein, wo das eine Gedicht endet und das nächste beginnt.',
       defaultPrompt: 'Please write a haiku about cats. Put it in <haiku> tags.',
       defaultSystemPrompt: '<haiku>',
       editableFields: ['prompt'],
-      hint: 'The grading function looks for a response of over 5 lines in length that includes the words "cat" and "<haiku>". Start simple. Currently, the prompt asks Claude for one haiku. You can change that and ask for two (or even more). Then if you run into formatting issues, change your prompt to fix that after you\'ve already gotten Claude to write more than one haiku.',
+      hint: 'Die Bewertung sucht nach einer Antwort mit mehr als 5 Zeilen, die "cat" und "<haiku>" enthält. Ändere zunächst den Prompt, um zwei Haikus anzufordern. Behebe dann etwaige Formatierungsprobleme.',
       grade: (text: string): boolean => {
         return (
           text.split('\n').length > 5 &&
@@ -92,13 +90,13 @@ If you are calling Claude through the API, you can pass the closing XML tag to t
     },
     {
       id: 'ex-5-3',
-      title: 'Exercise 5.3 — Two Haikus, Two Animals',
+      title: 'Übung 5.3 — Zwei Haikus, zwei Tiere',
       description:
-        'Modify the **Prompt** so that **Claude produces two haikus about two different animals**. Use `{ANIMAL1}` as a stand-in for the first substitution, and `{ANIMAL2}` as a stand-in for the second substitution. The variables are already set to "Cat" and "Dog".',
+        'Ändere den **Prompt** so, dass **Claude zwei Haikus über zwei verschiedene Tiere** schreibt. Verwende `{ANIMAL1}` als Platzhalter für das erste Tier und `{ANIMAL2}` für das zweite. Die Variablen sind bereits auf "Cat" und "Dog" gesetzt.',
       defaultPrompt: 'Please write a haiku about Cat. Put it in <haiku> tags.',
       defaultSystemPrompt: '',
       editableFields: ['prompt'],
-      hint: 'The grading function in this exercise is looking for a response that contains the words "tail", "cat", and "<haiku>". It\'s helpful to break this exercise down to several steps:\n1. Modify the initial prompt template so that Claude writes two poems.\n2. Give Claude indicators as to what the poems will be about, but instead of writing in the subjects directly (e.g., dog, cat, etc.), replace those subjects with the keywords "{ANIMAL1}" and "{ANIMAL2}".\n3. Run the prompt and make sure that the full prompt with variable substitutions has all the words correctly substituted.',
+      hint: 'Die Bewertung sucht nach "tail", "cat" und "<haiku>" in der Antwort. Schritte:\n1. Ändere den Prompt, sodass Claude zwei Gedichte schreibt.\n2. Ersetze die konkreten Themen durch `{ANIMAL1}` und `{ANIMAL2}`.\n3. Stelle sicher, dass die Variablen korrekt substituiert werden.',
       grade: (text: string): boolean => {
         return (
           /tail/i.test(text) &&

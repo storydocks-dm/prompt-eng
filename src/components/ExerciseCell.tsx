@@ -120,7 +120,7 @@ export default function ExerciseCell({ exercise }: Props) {
                   graded ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-600'
                 }`}
               >
-                {graded ? 'Korrekt gelost' : 'Noch nicht korrekt'}
+                {graded ? 'Korrekt gelöst' : 'Noch nicht korrekt'}
               </span>
             )}
           </div>
