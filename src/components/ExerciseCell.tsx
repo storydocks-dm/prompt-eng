@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import type { SerializableExercise, CompleteRequest, CompleteResponse } from '@/lib/types';
 import { gradeExercise } from '@/lib/actions';
+import { markExerciseSolved } from '@/lib/progress';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
@@ -34,7 +35,12 @@ export default function ExerciseCell({ exercise }: Props) {
         setError(data.error);
       } else {
         setResponse(data.text);
-        setGraded(await gradeExercise(exercise.id, data.text));
+        const result = await gradeExercise(exercise.id, data.text);
+        setGraded(result);
+        if (result) {
+          markExerciseSolved(exercise.id);
+          window.dispatchEvent(new Event('progress-updated'));
+        }
       }
     } catch {
       setError('Netzwerkfehler. Bitte erneut versuchen.');
@@ -124,8 +130,8 @@ export default function ExerciseCell({ exercise }: Props) {
               </span>
             )}
           </div>
-          <div className="bg-stone-50 border border-stone-200 rounded-lg p-3 font-mono text-sm whitespace-pre-wrap max-h-64 overflow-y-auto">
-            {response}
+          <div className="bg-stone-50 border border-stone-200 rounded-lg p-3 max-h-64 overflow-y-auto prose prose-sm prose-stone max-w-none prose-pre:bg-stone-900 prose-code:text-xs">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{response}</ReactMarkdown>
           </div>
         </div>
       )}
