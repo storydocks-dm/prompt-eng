@@ -10,7 +10,7 @@ const chapter: Chapter = {
 
 **Claude reagiert am besten auf klare und direkte Anweisungen.**
 
-Stell dir Claude wie einen neuen Mitarbeiter vor, der noch keinen Kontext hat. **Claude weiß ohne explizite Anleitung nicht, was zu tun ist.** Genau wie bei der ersten Einweisung eines Kollegen gilt: Je klarer und direkter du erklärt, was du willst, desto besser und genauer ist Claudes Antwort.
+Stell dir Claude wie einen neuen Mitarbeiter vor, der noch keinen Kontext hat. **Claude weiß ohne explizite Anleitung nicht, was zu tun ist.** Genau wie bei der ersten Einweisung eines Kollegen gilt: Je klarer und direkter du erklärst, was du willst, desto besser und genauer ist Claudes Antwort.
 
 Im Zweifelsfall gilt die **Goldene Regel klarer Prompts**:
 - Zeig deinen Prompt einem Kollegen oder Freund und lass ihn die Anweisung selbst ausführen. Wenn er verwirrt ist, ist Claude es auch.

@@ -8,7 +8,7 @@ const chapter: Chapter = {
   lessonMarkdown: `
 ## Lektion
 
-Stell dir vor, jemand weckt dich auf und stellt dir sofort mehrere komplizierte Fragen, auf die du sofort antworten musst. Wie gut wärst du? Wahrscheinlich nicht so gut wie wenn du **erst in Ruhe nachdenken dürftest**.
+Stell dir vor, jemand weckt dich auf und stellt dir sofort mehrere komplizierte Fragen, auf die du sofort antworten musst. Wie gut wärst du? Wahrscheinlich nicht so gut, wie wenn du **erst in Ruhe nachdenken dürftest**.
 
 Genauso ist es bei Claude.
 
@@ -55,7 +55,7 @@ Prompt: "Name a famous movie starring an actor who was born in the year 1956. Fi
       id: 'ex-6-1',
       title: 'Übung 6.1 — E-Mails klassifizieren',
       description:
-        'In dieser Übung weisen wir Claude an, E-Mails in folgende Kategorien einzuteilen:\n- (A) Vorverkaufsfrage\n- (B) Beschädigter oder defekter Artikel\n- (C) Abrechnungsfrage\n- (D) Sonstiges (bitte erläutern)\n\nÄndere den **Prompt** so, dass Claude **nur** die korrekte Klassifizierung ausgibt — mit dem **Buchstaben (A–D) in Klammern und dem Namen der Kategorie**.\n\nDie zu klassierende E-Mail lautet: "Hi -- My Mixmaster4000 is producing a strange noise when I operate it. It also smells a bit smoky and plasticky, like burning electronics. I need a replacement."',
+        'In dieser Übung weisen wir Claude an, E-Mails in folgende Kategorien einzuteilen:\n- (A) Vorverkaufsfrage\n- (B) Beschädigter oder defekter Artikel\n- (C) Abrechnungsfrage\n- (D) Sonstiges (bitte erläutern)\n\nÄndere den **Prompt** so, dass Claude **nur** die korrekte Klassifizierung ausgibt — mit dem **Buchstaben (A–D) in Klammern und dem Namen der Kategorie**.\n\nDie zu klassifizierende E-Mail lautet: "Hi -- My Mixmaster4000 is producing a strange noise when I operate it. It also smells a bit smoky and plasticky, like burning electronics. I need a replacement."',
       defaultPrompt: 'Please classify this email as either green or blue: {email}',
       defaultSystemPrompt: '',
       editableFields: ['prompt', 'systemPrompt'],

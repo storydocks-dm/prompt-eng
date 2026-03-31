@@ -34,7 +34,7 @@ export default function ChapterNav() {
   }, {});
 
   return (
-    <nav className="w-64 shrink-0 border-r border-stone-200 bg-stone-50 h-screen sticky top-0 overflow-y-auto p-4">
+    <nav className="w-64 shrink-0 border-r border-stone-200 bg-white h-screen sticky top-0 overflow-y-auto p-4">
       <Link href="/" className="block mb-6">
         <span className="text-sm font-bold text-orange-600 uppercase tracking-wider">
           Prompt Engineering

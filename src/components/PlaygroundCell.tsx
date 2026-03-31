@@ -73,7 +73,7 @@ export default function PlaygroundCell() {
         </div>
       )}
       {response && (
-        <div className="mt-3 bg-white border border-stone-200 rounded-lg p-3 max-h-64 overflow-y-auto prose prose-sm prose-stone max-w-none prose-pre:bg-stone-900 prose-code:text-xs">
+        <div className="mt-3 bg-white border border-stone-200 rounded-lg p-3 max-h-64 overflow-y-auto prose prose-sm prose-stone max-w-none prose-pre:bg-stone-900 prose-pre:overflow-x-auto prose-code:text-xs">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>{response}</ReactMarkdown>
         </div>
       )}

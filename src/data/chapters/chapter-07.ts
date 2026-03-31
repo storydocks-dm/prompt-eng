@@ -65,7 +65,7 @@ Claude extrapoliert das Muster aus den Beispielen und formatiert den dritten Abs
       id: 'ex-7-1',
       title: 'Übung 7.1 — E-Mail-Formatierung via Beispiele',
       description:
-        'Wir wiederholen Übung 6.2, aber diesmal verwenden wir **"Few-Shot"-Beispiele** im Prompt, um Claude zur richtigen Klassifizierung und Formatierung zu bringen. Der *letzte* Buchstabe in Claudes Ausgabe soll der Kategoriebuchstabe sein.\n\nKategorien:\n- (A) Vorverkaufsfrage\n- (B) Beschädigter oder defekter Artikel\n- (C) Abrechnungsfrage\n- (D) Sonstiges (bitte erläutern)\n\nZu klassierende E-Mail: "Hi -- My Mixmaster4000 is producing a strange noise when I operate it. It also smells a bit smoky and plasticky, like burning electronics. I need a replacement."',
+        'Wir wiederholen Übung 6.2, aber diesmal verwenden wir **"Few-Shot"-Beispiele** im Prompt, um Claude zur richtigen Klassifizierung und Formatierung zu bringen. Der *letzte* Buchstabe in Claudes Ausgabe soll der Kategoriebuchstabe sein.\n\nKategorien:\n- (A) Vorverkaufsfrage\n- (B) Beschädigter oder defekter Artikel\n- (C) Abrechnungsfrage\n- (D) Sonstiges (bitte erläutern)\n\nZu klassifizierende E-Mail: "Hi -- My Mixmaster4000 is producing a strange noise when I operate it. It also smells a bit smoky and plasticky, like burning electronics. I need a replacement."',
       defaultPrompt: 'Please classify this email as either green or blue: {email}',
       defaultSystemPrompt: '',
       editableFields: ['prompt', 'systemPrompt'],
